@@ -1,6 +1,6 @@
-module.exports = {
-  bracketSpacing: false,
-  jsxBracketSameLine: false,
-  singleQuote: false,
-  trailingComma: 'none',
-};
+// module.exports = {
+//   bracketSpacing: false,
+//   jsxBracketSameLine: false,
+//   singleQuote: false,
+//   trailingComma: 'none',
+// };
