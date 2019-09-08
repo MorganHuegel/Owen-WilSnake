@@ -13,5 +13,5 @@ export function SingleOwenFace(props){
     }
   }
 
-  return <Animated.Image source={require('../../../../../OWEN-WILSON.png')} style={owenFaceStyles.singleFace}/>
+  return <Animated.Image source={require('../../../../../OWEN-WILSON-small.png')} style={owenFaceStyles.singleFace}/>
 }

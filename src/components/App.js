@@ -78,7 +78,7 @@ export default class App extends React.Component {
                 }
               })
               .catch(err => {
-                console.log('Should error handle here in checkPhoneId: ', err)
+                console.log('Should error handle here in App: ', err.message || err)
               })
           }
           else this.setState({

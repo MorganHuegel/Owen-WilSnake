@@ -50,7 +50,7 @@ export class GameplayMain extends React.Component {
       points: 0,
       numTouches: 0
     },
-    difficulty: 5, // can be 1-10
+    difficulty: 4, // can be 1-10
     owenIsDead: false,
     isFetchingScores: false,
     finalScoreData: null,

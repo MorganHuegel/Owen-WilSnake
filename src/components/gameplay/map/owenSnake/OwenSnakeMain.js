@@ -119,8 +119,10 @@ export class OwenSnakeMain extends React.Component {
 
   delayDirectionChange (direction) {
     const delayTimeMs = (direction === 'up' || direction === 'down') 
-      ? this.millisecondsPerPixel * this.props.cellDimensions.height - 7
-      : this.millisecondsPerPixel * this.props.cellDimensions.width - 7
+      // ? this.millisecondsPerPixel * this.props.cellDimensions.height - 7
+      // : this.millisecondsPerPixel * this.props.cellDimensions.width - 7
+      ? this.millisecondsPerPixel * this.props.cellDimensions.height - 65
+      : this.millisecondsPerPixel * this.props.cellDimensions.width - 65
 
     return new Promise(resolve => setTimeout(resolve, delayTimeMs))
   }
@@ -242,11 +244,14 @@ export class OwenSnakeMain extends React.Component {
 
 
   componentDidMount(){
-    this._goRight(0)
-    this.checkForDieInterval = setInterval(() => {
-      this.checkForChicken()
-      this.checkForDeath()
-    }, 100)
+    setTimeout(() => {
+      this._goRight(0)
+      this.checkForDieInterval = setInterval(() => {
+        this.checkForChicken()
+        this.checkForDeath()
+      }, 100)
+    }, 1000)
+
   }
 
 

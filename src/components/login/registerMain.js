@@ -37,7 +37,7 @@ export class RegisterMain extends React.Component {
       borderWidth: 2,
       borderRadius: 5,
       borderColor: 'rgb(230, 230, 230)',
-      marginTop: 20
+      marginTop: 12
     },
     buttonText: {
       color: 'white'
@@ -47,7 +47,7 @@ export class RegisterMain extends React.Component {
       fontStyle: 'italic',
       minHeight: 40,
       maxWidth: 250,
-      marginTop: 10
+      marginTop: 12
     }
   }
 
@@ -136,7 +136,7 @@ export class RegisterMain extends React.Component {
           />
         </View>
 
-        <View style={{flex: 1}}>
+        <View style={{flex: 1.2}}>
           <LoginInput 
             isUsername={true}
             onChange={this.onChangeUsernameText}
