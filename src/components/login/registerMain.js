@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, Image, ActivityIndicator } from 'react-na
 import { LoginInput } from './loginInput';
 
 import { registerUser } from '../../fetchFunctions/registerUser';
+import { fetchLogin } from '../../fetchFunctions/login';
 
 export class RegisterMain extends React.Component {
   constructor(props){
@@ -15,7 +16,8 @@ export class RegisterMain extends React.Component {
       passwordText: '',
       passwordErrorMessage: '',
       isFetching: false,
-      fetchErrorMessage: ''
+      fetchErrorMessage: '',
+      registering: true
     }
   }
 
@@ -26,8 +28,18 @@ export class RegisterMain extends React.Component {
       alignItems: 'center'
     },
     logo: {
-      width: 180,
-      height: 210
+      width: 168,
+      height: 196
+    },
+    toggleRegistering: {
+      marginTop: 15,
+      alignSelf: 'center'
+    },
+    toggleRegisteringText: {
+      color: 'rgb(200, 200, 255)',
+      textDecorationLine: 'underline',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     button: {
       width: 250,
@@ -40,7 +52,8 @@ export class RegisterMain extends React.Component {
       marginTop: 12
     },
     buttonText: {
-      color: 'white'
+      color: 'white',
+      fontSize: 20
     },
     errorMessage: {
       color: 'rgb(255, 170, 160)',
@@ -110,23 +123,55 @@ export class RegisterMain extends React.Component {
       isFetching: true,
       fetchErrorMessage: ''
     }, () => {
-      return registerUser(this.state.usernameText, this.state.passwordText)
-        .then(webToken => {
-          return this.props.setLoggedIn(true, webToken)
-        })
-        .catch(errorMessage => {
-          // errorMessage should be a string, but it might be an Error object
-          this.setState({
-            fetchErrorMessage: errorMessage.message ? errorMessage.message : errorMessage,
-            isFetching: false
+      if (this.state.registering) {
+        return registerUser(this.state.usernameText, this.state.passwordText)
+          .then(webToken => {
+            return this.props.setLoggedIn(true, webToken)
           })
-        })
+          .catch(errorMessage => {
+            // errorMessage should be a string, but it might be an Error object
+            this.setState({
+              fetchErrorMessage: errorMessage.message ? errorMessage.message : errorMessage,
+              isFetching: false
+            })
+          })
+      } else {
+        return fetchLogin(this.state.usernameText, this.state.passwordText)
+          .then(webToken => {
+            return this.props.setLoggedIn(true, webToken)
+          })
+          .catch(errorMessage => {
+            // errorMessage should be a string, but it might be an Error object
+            this.setState({
+              fetchErrorMessage: errorMessage.message ? errorMessage.message : errorMessage,
+              isFetching: false
+            })
+          })
+      }
+    })
+  }
+
+
+  toggleRegisteringState = (bool) => {
+    this.setState({
+      registering: bool
     })
   }
 
 
 
   render(){
+    let toggleRegistering;
+    if (this.state.registering) {
+      toggleRegistering = <TouchableOpacity style={this.registerMainStyles.toggleRegistering} onPress={() => this.toggleRegisteringState(false)}>
+        <Text style={this.registerMainStyles.toggleRegisteringText}>Already a User?</Text>
+      </TouchableOpacity>
+    } else {
+      toggleRegistering = <TouchableOpacity style={this.registerMainStyles.toggleRegistering} onPress={() => this.toggleRegisteringState(true)}>
+        <Text style={this.registerMainStyles.toggleRegisteringText}>Sign-up</Text>
+      </TouchableOpacity>
+    }
+
     return (
       <View style={this.registerMainStyles.container}>
         <View style={{flex: 1, justifyContent: 'center'}}>
@@ -136,7 +181,7 @@ export class RegisterMain extends React.Component {
           />
         </View>
 
-        <View style={{flex: 1.2}}>
+        <View style={{flex: 1.4}}>
           <LoginInput 
             isUsername={true}
             onChange={this.onChangeUsernameText}
@@ -160,8 +205,10 @@ export class RegisterMain extends React.Component {
             disabled={this.state.isFetching || !!this.state.usernameErrorMessage || !!this.state.passwordErrorMessage} 
             onPress={this.onSubmit}
           >
-            <Text style={this.registerMainStyles.buttonText}>Start Playing</Text>
+            <Text style={this.registerMainStyles.buttonText}>{this.state.registering ? 'Make my account' : 'Login & Play'}</Text>
           </TouchableOpacity>
+
+          {toggleRegistering}
 
           <Text style={this.registerMainStyles.errorMessage}>{this.state.fetchErrorMessage}</Text>
 
