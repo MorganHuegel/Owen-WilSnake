@@ -5,6 +5,7 @@
 
 const SERVER_BASE_URL = 'https://owen-wilsnake-server.herokuapp.com'
 // const SERVER_BASE_URL = 'http://192.168.0.4:8080'
+// const SERVER_BASE_URL = 'http://localhost:8080'
 
 module.exports = {
   SERVER_BASE_URL: SERVER_BASE_URL || 'http://192.168.0.4:8080'
