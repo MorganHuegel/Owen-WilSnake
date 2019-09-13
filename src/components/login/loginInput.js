@@ -58,6 +58,7 @@ export function LoginInput (props) {
         editable={!props.isFetching} // false if fetching
         onBlur={props.onBlur}
         placeholder={props.isUsername ? 'username' : 'password'}
+        secureTextEntry={props.isUsername ? false : true}
       />
 
       <Text style={loginInputStyles.errorMessage}>
