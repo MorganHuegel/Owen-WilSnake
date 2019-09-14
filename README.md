@@ -5,77 +5,52 @@
 </p>
 
 
+
 ## Summary
 
 Owen Wilsnake is a rendition of the classic game, *Snake*, with a fun twist!
 
 
+
 ## Deployed app
 
-https://goodtimes-client.herokuapp.com/
+Demonstration video [here](https://www.youtube.com/watch?v=3iYVN86KMyo)
 
-Server side repo: https://github.com/thinkful-ei22/its_a_date_server
+Server-side repo [here](https://github.com/MorganHuegel/Owen-WilSnake-Server)
+
+*Note: This game is not yet deployed in App Store or Play Store because it contains third-party content. Check back soon, as I am currently working on obtaining the necessary permissions from Owen Wilson's agents.*
+
+
 
 ## Features
 
-Users can register to create an account where all their events are stored...
+<p align="center">
+   <img src="https://github.com/MorganHuegel/Owen-WilSnake/blob/master/screenshots/owen-wilsnake-login.png" width=30%>
+   <img src="https://github.com/MorganHuegel/Owen-WilSnake/blob/master/screenshots/owen-wilsnake-landing.png" width=30%>
+   <img src="https://github.com/MorganHuegel/Owen-WilSnake/blob/master/screenshots/owen-wilsnake-gameplay.png" width=30%>
+</p>
 
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/register.jpg" width=100%>
+<p align="center">
+   <img src="https://github.com/MorganHuegel/Owen-WilSnake/blob/master/screenshots/owen-wilsnake-crash.png" width=30%>
+   <img src="https://github.com/MorganHuegel/Owen-WilSnake/blob/master/screenshots/owen-wilsnake-high-scores.png" width=30%>
+</p>
 
-...and login anytime.
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/login.jpg" width=100%>
-
-
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/dashboard.jpg" width=100%>
-
-Users click create event to start planning and are walked through a series of event options, including a location, time, food and activities.
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step1.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step2.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step3.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step4.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step5.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/step6.jpg" width=100%>
-After selecting the options for the event, Goodtimes auto-generates a form that can be publically accessed.
-You can email your friends directly from the Goodtimes website and send them a bitly link that will take them to the voting form.
-
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/guestemailvote.jpg" width=100%>
-Users' friends can vote on the times and places that work best for them...
+- Intuitive register/login feature, which is linked to the users's unique phone ID
+- Clean animations that enhance user experience
+- Fun, intuitive gameplay (tap the screen to move Owen; Eat the chicken to earn points)
+- Scoreboards the high-scores from users all across the world
 
 
-...and users can check the results of the votes on their dashboard.
-<img src="https://github.com/thinkful-ei22/its_a_date_client/blob/development/screenshots/dashboardvotes.jpg" width=100%>
-
-
-When everyone has voted, users can let their group know which options came out on top!
 
 ## Tech-Stack
 
 Front-end                       | Back-end
 --------------------------------|------------------------------------
- HTML                           |  Node/Express
- CSS                            |  Sendgrid
- React                          |  MongoDB/mongoose
- Redux                          |  JSON Webtoken
- React-Router                   |  Bcrypt.js
- Redux-Form                     |  Passport.js
- React-Icons                    |  Axios
- Moment.js                      |  Request/Promise
- Node-sass                      |  Bit.ly API
- Bing Maps API                  |  Yelp API
- Enzyme/jest                    |  Event Bright API
- Continuous Integration (Travis)|  Mocha/Chai
- Continuous Deployment (Heroku) |  Continuous Integration (Travis)
- .                              |  Continuous Deployment (Heroku)
+ React Native                   |  Node/Express
+ React Native Animations        |  PostgreSQL
+ @RNC/Async Storage             |  Knex
+ react-native-device-info       |  JSON Webtokens
+ react-native-sound             |  Bcrypt.js
+ Moment.js                      |  Continuous Deployment (Heroku)
 
 
-## Team Members
-
-Jennifer Colna
-
-Morgan Huegel
-
-Chasen Arey
-
-William Holcombe
-
-Donny Cheng
