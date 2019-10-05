@@ -6,7 +6,7 @@ import { LoginInput } from './loginInput';
 import { fetchLogin } from '../../fetchFunctions/login';
 import { checkPhoneId } from '../../fetchFunctions/checkPhoneId';
 
-import { owenWilson as character } from '../playerData';
+import { daniel as character } from '../playerData';
 
 export class LoginPasswordOnlyMain extends React.Component {
   constructor(props){

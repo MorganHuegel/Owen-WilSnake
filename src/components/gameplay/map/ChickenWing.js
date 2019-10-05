@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Image } from 'react-native';
 
-import { owenWilson as character } from '../../playerData';
+import { daniel as character } from '../../playerData';
 
 export function ChickenWing(props){
   const chickenWingStyles = {

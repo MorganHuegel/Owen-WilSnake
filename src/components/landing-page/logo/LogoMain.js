@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { LogoMainOwenFaceContainer } from './LogoMainOwenFaceContainer';
 
-import { owenWilson as character } from '../../playerData';
+import { daniel as character } from '../../playerData';
 
 export function LogoMain(props){
   logoMainStyles = {

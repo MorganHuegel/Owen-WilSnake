@@ -6,7 +6,7 @@ import { LoginInput } from './loginInput';
 import { registerUser } from '../../fetchFunctions/registerUser';
 import { fetchLogin } from '../../fetchFunctions/login';
 
-import { owenWilson as character } from '../playerData';
+import { daniel as character } from '../playerData';
 
 export class RegisterMain extends React.Component {
   constructor(props){

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Animated } from 'react-native';
 
-import { owenWilson as character } from '../../../playerData'
+import { daniel as character } from '../../../playerData'
 
 export function SingleOwenFace(props){
   owenFaceStyles = {
