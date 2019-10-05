@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Animated } from 'react-native';
 
-import { owenWilson } from '../../playerData';
+import { owenWilson as character } from '../../playerData';
 
 export function LogoMainOwenFace (props) {
   return (
     <Animated.Image 
-      source={owenWilson.faceImageWithBorder} 
+      source={character.faceImageWithBorder} 
       style={props.styleProps}
     />
   )
