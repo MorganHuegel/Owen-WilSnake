@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "demo": "react-native run-ios --simulator='iPhone 8'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
