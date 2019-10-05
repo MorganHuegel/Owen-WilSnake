@@ -3,6 +3,8 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { LogoMainOwenFaceContainer } from './LogoMainOwenFaceContainer';
 
+import { owenWilson } from '../../playerData';
+
 export function LogoMain(props){
   logoMainStyles = {
     container: {
@@ -26,7 +28,7 @@ export function LogoMain(props){
 
   return (
     <View style={logoMainStyles.container}>
-      <Image source={require('./logoWords.png')} style={logoMainStyles.logoWords}/>
+      <Image source={owenWilson.landingText} style={logoMainStyles.logoWords}/>
       <LogoMainOwenFaceContainer />
     </View>
   )

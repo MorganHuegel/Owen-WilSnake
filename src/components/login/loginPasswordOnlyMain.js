@@ -6,6 +6,8 @@ import { LoginInput } from './loginInput';
 import { fetchLogin } from '../../fetchFunctions/login';
 import { checkPhoneId } from '../../fetchFunctions/checkPhoneId';
 
+import { owenWilson } from '../playerData';
+
 export class LoginPasswordOnlyMain extends React.Component {
   constructor(props){
     super(props)
@@ -124,7 +126,7 @@ export class LoginPasswordOnlyMain extends React.Component {
         <View style={{flex: 1, justifyContent: 'center'}}>
           <Image 
             style={this.loginMainStyles.logo}
-            source={require('../../../src/components/landing-page/logo/owen-face-with-border.png')}
+            source={owenWilson.faceImageWithBorder}
           />
         </View>
 

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Image } from 'react-native';
 
+import { owenWilson } from '../../playerData';
+
 export function ChickenWing(props){
   const chickenWingStyles = {
     image: {
@@ -14,6 +16,6 @@ export function ChickenWing(props){
   }
 
   return (
-    <Image source={require('../../../../chicken-wing.png')} style={chickenWingStyles.image}/>
+    <Image source={owenWilson.itemToEat} style={chickenWingStyles.image}/>
   )
 }

@@ -6,6 +6,8 @@ import { LoginInput } from './loginInput';
 import { registerUser } from '../../fetchFunctions/registerUser';
 import { fetchLogin } from '../../fetchFunctions/login';
 
+import { owenWilson } from '../playerData';
+
 export class RegisterMain extends React.Component {
   constructor(props){
     super(props)
@@ -177,7 +179,7 @@ export class RegisterMain extends React.Component {
         <View style={{flex: 1, justifyContent: 'center'}}>
           <Image 
             style={this.registerMainStyles.logo}
-            source={require('../../../src/components/landing-page/logo/owen-face-with-border.png')}
+            source={owenWilson.faceImageWithBorder}
           />
         </View>
 

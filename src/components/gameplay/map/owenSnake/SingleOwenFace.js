@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Animated } from 'react-native';
 
+import { owenWilson } from '../../../playerData'
+
 export function SingleOwenFace(props){
   owenFaceStyles = {
     singleFace: {
@@ -13,5 +15,5 @@ export function SingleOwenFace(props){
     }
   }
 
-  return <Animated.Image source={require('../../../../../OWEN-WILSON-small.png')} style={owenFaceStyles.singleFace}/>
+  return <Animated.Image source={owenWilson.faceImage} style={owenFaceStyles.singleFace}/>
 }
