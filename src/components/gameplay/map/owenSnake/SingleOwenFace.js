@@ -15,5 +15,5 @@ export function SingleOwenFace(props){
     }
   }
 
-  return <Animated.Image source={character.faceImage} style={owenFaceStyles.singleFace}/>
+  return <Animated.Image source={character.gameplayImage} style={owenFaceStyles.singleFace}/>
 }

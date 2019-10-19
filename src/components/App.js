@@ -59,8 +59,10 @@ export default class App extends React.Component {
         })
         .catch((err) => {
           if (err === 'No JWT') {
+            console.log('No JWT')
             return checkPhoneId()
               .then(userExists => {
+                console.log('USER EXISTS: ', userExists)
                 if (userExists) {
                   this.setState({
                     showRegistration: false,
@@ -105,7 +107,8 @@ export default class App extends React.Component {
         .then(this.setState({
           loggedIn: bool,
           playing: false,
-          showPasswordLogin: true
+          showPasswordLogin: true,
+          showRegistration: true
         }))
     }
   }

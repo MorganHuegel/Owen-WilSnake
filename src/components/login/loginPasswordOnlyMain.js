@@ -62,6 +62,11 @@ export class LoginPasswordOnlyMain extends React.Component {
     return this.setState({isFetching: true}, () => {
       return checkPhoneId()
         .then(userObject => {
+          console.log('USER OBJECT: ', userObject)
+          // If user no longer exists in database
+          if (userObject === false) {
+            return this.setState({isFetching: false}, () => this.props.setLoggedIn(false))
+          }
           this.setState({isFetching: false, username: userObject.username})
         })
     })

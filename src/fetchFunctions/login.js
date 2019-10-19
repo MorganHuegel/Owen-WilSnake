@@ -29,6 +29,7 @@ export function fetchLogin (username, password, phoneId=null) {
     }
   })
   .catch(error => {
+    console.log('ERR in login fetch', error)
     return Promise.reject(error)
   })
 }

@@ -19,7 +19,7 @@ export class RegisterMain extends React.Component {
       passwordErrorMessage: '',
       isFetching: false,
       fetchErrorMessage: '',
-      registering: true
+      registering: false
     }
   }
 

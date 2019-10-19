@@ -22,6 +22,7 @@ export function checkPhoneId () {
     if (response.userExists === true) {
       return Promise.resolve(response)
     } else if (response.userExists === false) {
+      console.log('FALSE BLOCK')
       return Promise.resolve(false)
     } else {
       return Promise.reject('Could not validate unique phone id')
