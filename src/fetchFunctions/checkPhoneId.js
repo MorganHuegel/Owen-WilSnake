@@ -4,8 +4,6 @@ import DeviceInfo from 'react-native-device-info';
 
 export function checkPhoneId () {
   const phoneId = DeviceInfo.getUniqueID()
-  console.log('---------------------------------------------------------------')
-  console.log('Phone ID: ', phoneId)
   return fetch(`${SERVER_BASE_URL}/users/check`, {
     method: 'post',
     headers: {
@@ -18,11 +16,9 @@ export function checkPhoneId () {
   })
   .then(res => res.json())
   .then(response => {
-    console.log('RESPONSE IN CHECKPHONEID: ', response)
     if (response.userExists === true) {
       return Promise.resolve(response)
     } else if (response.userExists === false) {
-      console.log('FALSE BLOCK')
       return Promise.resolve(false)
     } else {
       return Promise.reject('Could not validate unique phone id')
