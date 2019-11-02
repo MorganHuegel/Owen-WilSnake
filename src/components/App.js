@@ -11,6 +11,7 @@ import { fetchLoginJwt } from '../fetchFunctions/loginJwt';
 import { checkPhoneId } from '../fetchFunctions/checkPhoneId';
 
 
+const AvatarContext = React.createContext()
 export default class App extends React.Component {
   state = {
     showRegistration: false,
@@ -18,7 +19,8 @@ export default class App extends React.Component {
     loggedIn: false,
     playing: false,
     fadingOutGameplay: false,
-    isFetching: false
+    isFetching: false,
+    avatar: 'daniel'
   }
 
 
@@ -59,10 +61,8 @@ export default class App extends React.Component {
         })
         .catch((err) => {
           if (err === 'No JWT') {
-            console.log('No JWT')
             return checkPhoneId()
               .then(userExists => {
-                console.log('USER EXISTS: ', userExists)
                 if (userExists) {
                   this.setState({
                     showRegistration: false,
@@ -149,9 +149,11 @@ export default class App extends React.Component {
     } 
 
     return (
-      <View style={stylesApp.container}>
-        {component}
-      </View>
+      <AvatarContext.Provider value={this.state.avatar}/>
+        <View style={stylesApp.container}>
+          {component}
+        </View>
+      <AvatarContext.Provider value=""/>
     )
   }
 }
