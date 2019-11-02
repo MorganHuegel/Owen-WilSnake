@@ -11,7 +11,7 @@ import { fetchLoginJwt } from '../fetchFunctions/loginJwt';
 import { checkPhoneId } from '../fetchFunctions/checkPhoneId';
 
 
-const AvatarContext = React.createContext()
+//const AvatarContext = React.createContext()
 export default class App extends React.Component {
   state = {
     showRegistration: false,
@@ -147,13 +147,13 @@ export default class App extends React.Component {
     } else {
       component = <LandingMain setToPlaying={this.setToPlaying} setLoggedIn={this.setLoggedIn}/>
     } 
+      // <AvatarContext.Provider value={this.state.avatar}>
+      // </AvatarContext.Provider>
 
     return (
-      <AvatarContext.Provider value={this.state.avatar}/>
-        <View style={stylesApp.container}>
-          {component}
-        </View>
-      <AvatarContext.Provider value=""/>
+      <View style={stylesApp.container}>
+        {component}
+      </View>
     )
   }
 }
