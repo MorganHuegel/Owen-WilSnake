@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 import { LogoMainOwenFaceContainer } from './LogoMainOwenFaceContainer';
 
-import { daniel as character } from '../../playerData';
+import { AvatarContext } from '../../App';
 
 export function LogoMain(props){
   logoMainStyles = {
@@ -28,7 +28,14 @@ export function LogoMain(props){
 
   return (
     <View style={logoMainStyles.container}>
-      <Image source={character.landingText} style={logoMainStyles.logoWords}/>
+      <AvatarContext.Consumer>
+        {
+          avatar => {
+            const character = require('../../playerData')[avatar]
+            return <Image source={character.landingText} style={logoMainStyles.logoWords}/>
+          }
+        }
+      </AvatarContext.Consumer>
       <LogoMainOwenFaceContainer />
     </View>
   )

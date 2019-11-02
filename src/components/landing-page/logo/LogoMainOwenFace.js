@@ -2,13 +2,20 @@ import React from 'react';
 
 import { Animated } from 'react-native';
 
-import { daniel as character } from '../../playerData';
+import { AvatarContext } from '../../App';
 
 export function LogoMainOwenFace (props) {
   return (
-    <Animated.Image 
-      source={character.faceImageWithBorder} 
-      style={props.styleProps}
-    />
+    <AvatarContext.Consumer>
+      {
+        avatar => {
+          const character = require('../../playerData')[avatar]
+          return <Animated.Image 
+            source={character.faceImageWithBorder} 
+            style={props.styleProps}
+        />
+        }
+      }
+    </AvatarContext.Consumer>
   )
 }

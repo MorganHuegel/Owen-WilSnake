@@ -12,7 +12,7 @@ export function fetchLoginJwt (webToken) {
   .then(res => res.json())
   .then(response => {
     if (response.valid) {
-      return Promise.resolve(response)
+      return Promise.resolve(response.user)
     } else {
       return Promise.reject('JWT not valid')
     }

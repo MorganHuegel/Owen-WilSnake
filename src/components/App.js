@@ -11,7 +11,7 @@ import { fetchLoginJwt } from '../fetchFunctions/loginJwt';
 import { checkPhoneId } from '../fetchFunctions/checkPhoneId';
 
 
-//const AvatarContext = React.createContext()
+export const AvatarContext = React.createContext()
 export default class App extends React.Component {
   state = {
     showRegistration: false,
@@ -20,7 +20,7 @@ export default class App extends React.Component {
     playing: false,
     fadingOutGameplay: false,
     isFetching: false,
-    avatar: 'daniel'
+    avatar: null
   }
 
 
@@ -52,12 +52,8 @@ export default class App extends React.Component {
           }
           return fetchLoginJwt(webToken)
         })
-        .then(isValid => {
-          if (isValid) {
-            this.setState({loggedIn: true, showPasswordLogin: false, isFetching: false})
-          } else {
-            this.setState({loggedIn: false, showPasswordLogin: true, isFetching: false})
-          }
+        .then(userData => {
+          this.setState({loggedIn: true, showPasswordLogin: false, isFetching: false, avatar: userData.avatar})
         })
         .catch((err) => {
           if (err === 'No JWT') {
@@ -146,14 +142,14 @@ export default class App extends React.Component {
       /> 
     } else {
       component = <LandingMain setToPlaying={this.setToPlaying} setLoggedIn={this.setLoggedIn}/>
-    } 
-      // <AvatarContext.Provider value={this.state.avatar}>
-      // </AvatarContext.Provider>
-
+    }
+    console.log('CURRENT AVATAR: ', this.state.avatar)
     return (
-      <View style={stylesApp.container}>
-        {component}
-      </View>
+      <AvatarContext.Provider value={this.state.avatar}>
+        <View style={stylesApp.container}>
+          {component}
+        </View>
+      </AvatarContext.Provider>
     )
   }
 }

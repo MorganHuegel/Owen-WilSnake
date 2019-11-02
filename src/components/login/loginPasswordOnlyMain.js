@@ -6,7 +6,7 @@ import { LoginInput } from './loginInput';
 import { fetchLogin } from '../../fetchFunctions/login';
 import { checkPhoneId } from '../../fetchFunctions/checkPhoneId';
 
-import { daniel as character } from '../playerData';
+import { AvatarContext } from '../App';
 
 export class LoginPasswordOnlyMain extends React.Component {
   constructor(props){
@@ -62,7 +62,6 @@ export class LoginPasswordOnlyMain extends React.Component {
     return this.setState({isFetching: true}, () => {
       return checkPhoneId()
         .then(userObject => {
-          console.log('USER OBJECT: ', userObject)
           // If user no longer exists in database
           if (userObject === false) {
             return this.setState({isFetching: false}, () => this.props.setLoggedIn(false))
@@ -129,10 +128,17 @@ export class LoginPasswordOnlyMain extends React.Component {
     return (
       <View style={this.loginMainStyles.container}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Image 
-            style={this.loginMainStyles.logo}
-            source={character.faceImageWithBorder}
-          />
+          <AvatarContext.Consumer>
+            {
+              avatar => {
+                const character = require('../playerData')[avatar]
+                return <Image 
+                  style={this.loginMainStyles.logo}
+                  source={character.faceImageWithBorder}
+                />
+              }
+            }
+          </AvatarContext.Consumer>
         </View>
 
         <View style={{flex: 1}}>
