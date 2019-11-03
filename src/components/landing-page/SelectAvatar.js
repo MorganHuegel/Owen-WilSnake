@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Picker, Button } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
+import { changeAvatar } from '../../fetchFunctions/changeAvatar';
 import players from '../playerData';
 import { AvatarContext } from '../App';
 
@@ -32,7 +34,12 @@ export function SelectAvatar(props){
             <Picker 
               selectedValue={avatar}
               style={selectAvatarStyles.container}
-              onValueChange={newAvatar => setAvatar(newAvatar)}
+              onValueChange={newAvatar => {
+                return AsyncStorage.getItem('@webToken')
+                  .then(webToken => changeAvatar(webToken, newAvatar))
+                  .then(updatedUser => setAvatar(updatedUser.avatar))
+                  .catch(e => console.log('Probably should error handle here in SelectAvatar component: ' + e))
+              }}
               itemStyle={selectAvatarStyles.items}
             >
               {pickerItems}
