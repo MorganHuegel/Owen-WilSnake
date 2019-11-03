@@ -7,6 +7,7 @@ import { fetchLogin } from '../../fetchFunctions/login';
 import { checkPhoneId } from '../../fetchFunctions/checkPhoneId';
 
 import { AvatarContext } from '../App';
+import players from '../playerData';
 
 export class LoginPasswordOnlyMain extends React.Component {
   constructor(props){
@@ -131,7 +132,7 @@ export class LoginPasswordOnlyMain extends React.Component {
           <AvatarContext.Consumer>
             {
               avatar => {
-                const character = require('../playerData')[avatar]
+                const character = players[avatar];
                 return <Image 
                   style={this.loginMainStyles.logo}
                   source={character.faceImageWithBorder}

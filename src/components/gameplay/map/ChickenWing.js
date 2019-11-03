@@ -3,6 +3,7 @@ import React from 'react';
 import { Image } from 'react-native';
 
 import { AvatarContext } from '../../App'
+import players from '../../playerData';
 
 export function ChickenWing(props){
   const chickenWingStyles = {
@@ -19,7 +20,7 @@ export function ChickenWing(props){
     <AvatarContext.Consumer>
       {
         avatar => {
-          const character = require('../../playerData')[avatar];
+          const character = players[avatar];
           return <Image source={character.itemToEat} style={chickenWingStyles.image}/> 
         }
       }

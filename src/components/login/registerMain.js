@@ -7,6 +7,7 @@ import { registerUser } from '../../fetchFunctions/registerUser';
 import { fetchLogin } from '../../fetchFunctions/login';
 
 import { AvatarContext } from '../App';
+import players from '../playerData'
 
 export class RegisterMain extends React.Component {
   constructor(props){
@@ -180,7 +181,7 @@ export class RegisterMain extends React.Component {
           <AvatarContext.Consumer>
             {
               avatar => {
-                const character = require('../playerData')[avatar ? avatar : 'charkie']
+                const character = players[avatar];
                 return <Image 
                   style={this.registerMainStyles.logo}
                   source={character.faceImageWithBorder}

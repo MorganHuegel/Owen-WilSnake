@@ -4,6 +4,7 @@ import { View, Image } from 'react-native';
 import { LogoMainOwenFaceContainer } from './LogoMainOwenFaceContainer';
 
 import { AvatarContext } from '../../App';
+import players from '../../playerData';
 
 export function LogoMain(props){
   logoMainStyles = {
@@ -31,7 +32,7 @@ export function LogoMain(props){
       <AvatarContext.Consumer>
         {
           avatar => {
-            const character = require('../../playerData')[avatar]
+            const character = players[avatar];
             return <Image source={character.landingText} style={logoMainStyles.logoWords}/>
           }
         }

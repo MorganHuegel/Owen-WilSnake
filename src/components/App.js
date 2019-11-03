@@ -20,7 +20,7 @@ export default class App extends React.Component {
     playing: false,
     fadingOutGameplay: false,
     isFetching: false,
-    avatar: null
+    avatar: 'charkie'
   }
 
 
