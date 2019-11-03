@@ -118,6 +118,12 @@ export default class App extends React.Component {
     })
   }
 
+
+  setAvatar = (avatar) => {
+    if (!avatar) avatar = 'charkie'
+    console.log('Setting new avatar to: ', avatar)
+    this.setState({ avatar })
+  }
   
   render() {
     let component;
@@ -143,9 +149,9 @@ export default class App extends React.Component {
     } else {
       component = <LandingMain setToPlaying={this.setToPlaying} setLoggedIn={this.setLoggedIn}/>
     }
-    console.log('CURRENT AVATAR: ', this.state.avatar)
+    
     return (
-      <AvatarContext.Provider value={this.state.avatar}>
+      <AvatarContext.Provider value={{avatar: this.state.avatar, setAvatar: this.setAvatar}}>
         <View style={stylesApp.container}>
           {component}
         </View>

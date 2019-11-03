@@ -19,7 +19,7 @@ export function SingleOwenFace(props){
   return (
     <AvatarContext.Consumer>
       {
-        avatar => {
+        ({avatar}) => {
           const character = players[avatar];
           return <Animated.Image source={character.gameplayImage} style={owenFaceStyles.singleFace}/>
         }

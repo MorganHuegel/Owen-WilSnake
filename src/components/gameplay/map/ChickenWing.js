@@ -19,7 +19,7 @@ export function ChickenWing(props){
   return (
     <AvatarContext.Consumer>
       {
-        avatar => {
+        ({avatar}) => {
           const character = players[avatar];
           return <Image source={character.itemToEat} style={chickenWingStyles.image}/> 
         }

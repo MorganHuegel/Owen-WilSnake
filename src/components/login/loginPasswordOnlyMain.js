@@ -131,7 +131,7 @@ export class LoginPasswordOnlyMain extends React.Component {
         <View style={{flex: 1, justifyContent: 'center'}}>
           <AvatarContext.Consumer>
             {
-              avatar => {
+              ({avatar}) => {
                 const character = players[avatar];
                 return <Image 
                   style={this.loginMainStyles.logo}

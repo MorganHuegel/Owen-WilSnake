@@ -31,7 +31,7 @@ export function LogoMain(props){
     <View style={logoMainStyles.container}>
       <AvatarContext.Consumer>
         {
-          avatar => {
+          ({avatar}) => {
             const character = players[avatar];
             return <Image source={character.landingText} style={logoMainStyles.logoWords}/>
           }

@@ -9,7 +9,7 @@ export function LogoMainOwenFace (props) {
   return (
     <AvatarContext.Consumer>
       {
-        avatar => {
+        ({avatar}) => {
           const character = players[avatar];
           return <Animated.Image 
             source={character.faceImageWithBorder} 
