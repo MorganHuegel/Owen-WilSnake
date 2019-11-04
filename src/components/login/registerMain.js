@@ -140,8 +140,8 @@ export class RegisterMain extends React.Component {
           })
       } else {
         return fetchLogin(this.state.usernameText, this.state.passwordText)
-          .then(webToken => {
-            return this.props.setLoggedIn(true, webToken)
+          .then(response => {
+            return this.props.setLoggedIn(true, response.webToken, response.userData.avatar)
           })
           .catch(errorMessage => {
             // errorMessage should be a string, but it might be an Error object

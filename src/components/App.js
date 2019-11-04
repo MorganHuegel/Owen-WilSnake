@@ -58,13 +58,14 @@ export default class App extends React.Component {
         .catch((err) => {
           if (err === 'No JWT') {
             return checkPhoneId()
-              .then(userExists => {
-                if (userExists) {
+              .then(response => {
+                if (response.userExists) {
                   this.setState({
                     showRegistration: false,
                     showPasswordLogin: true,
                     loggedIn: false,
-                    isFetching: false
+                    isFetching: false,
+                    avatar: response.avatar
                   })
                 } else {
                   this.setState({
@@ -90,13 +91,14 @@ export default class App extends React.Component {
   }
 
 
-  setLoggedIn = (bool, webToken=null) => {
+  setLoggedIn = (bool, webToken=null, avatar=null) => {
     if (bool) {
       return AsyncStorage.setItem('@webToken', webToken)
         .then(this.setState({
           showRegistration: false,
           showPasswordLogin: false,
-          loggedIn: bool
+          loggedIn: bool,
+          avatar: avatar
         }))
     } else {
       return AsyncStorage.removeItem('@webToken')
@@ -121,7 +123,6 @@ export default class App extends React.Component {
 
   setAvatar = (avatar) => {
     if (!avatar) avatar = 'charkie'
-    console.log('Setting new avatar to: ', avatar)
     this.setState({ avatar })
   }
   
@@ -135,7 +136,7 @@ export default class App extends React.Component {
         style={{marginTop: 100}}
       />
     } else if (!this.state.loggedIn && this.state.showRegistration) {
-      component = <RegisterMain setLoggedIn={this.setLoggedIn}/>
+      component = <RegisterMain setLoggedIn={this.setLoggedIn} setAvatar={this.setAvatar}/>
     } else if (!this.state.loggedIn && this.state.showPasswordLogin) {
       component = <LoginPasswordOnlyMain setLoggedIn={this.setLoggedIn}/>
     } else if (this.state.playing) {

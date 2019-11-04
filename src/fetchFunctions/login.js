@@ -21,7 +21,7 @@ export function fetchLogin (username, password, phoneId=null) {
   .then(res => res.json())
   .then(response => {
     if (response.webToken) {
-      return Promise.resolve(response.webToken)
+      return Promise.resolve(response)
     } else if (response.error) {
       return Promise.reject(response.error)
     } else {
@@ -29,7 +29,6 @@ export function fetchLogin (username, password, phoneId=null) {
     }
   })
   .catch(error => {
-    console.log('ERR in login fetch', error)
     return Promise.reject(error)
   })
 }

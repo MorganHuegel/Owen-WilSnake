@@ -17,9 +17,9 @@ export function checkPhoneId () {
   .then(res => res.json())
   .then(response => {
     if (response.userExists === true) {
-      return Promise.resolve(response)
+      return Promise.resolve({userExists: true, avatar: response.avatar, username: response.username})
     } else if (response.userExists === false) {
-      return Promise.resolve(false)
+      return Promise.resolve({userExists: false})
     } else {
       return Promise.reject('Could not validate unique phone id')
     }
