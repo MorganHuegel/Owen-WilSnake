@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Animated } from 'react-native';
 
+import { AvatarContext } from '../../../App';
+import players from '../../../playerData';
+
 export function SingleOwenFace(props){
   owenFaceStyles = {
     singleFace: {
@@ -13,5 +16,14 @@ export function SingleOwenFace(props){
     }
   }
 
-  return <Animated.Image source={require('../../../../../OWEN-WILSON-small.png')} style={owenFaceStyles.singleFace}/>
+  return (
+    <AvatarContext.Consumer>
+      {
+        ({avatar}) => {
+          const character = players[avatar];
+          return <Animated.Image source={character.gameplayImage} style={owenFaceStyles.singleFace}/>
+        }
+      }
+    </AvatarContext.Consumer>
+  )
 }

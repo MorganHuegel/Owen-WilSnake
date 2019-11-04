@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Image } from 'react-native';
 
+import { AvatarContext } from '../../App'
+import players from '../../playerData';
+
 export function ChickenWing(props){
   const chickenWingStyles = {
     image: {
@@ -14,6 +17,13 @@ export function ChickenWing(props){
   }
 
   return (
-    <Image source={require('../../../../chicken-wing.png')} style={chickenWingStyles.image}/>
+    <AvatarContext.Consumer>
+      {
+        ({avatar}) => {
+          const character = players[avatar];
+          return <Image source={character.itemToEat} style={chickenWingStyles.image}/> 
+        }
+      }
+    </AvatarContext.Consumer>
   )
 }

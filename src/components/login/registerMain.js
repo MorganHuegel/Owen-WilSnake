@@ -6,6 +6,9 @@ import { LoginInput } from './loginInput';
 import { registerUser } from '../../fetchFunctions/registerUser';
 import { fetchLogin } from '../../fetchFunctions/login';
 
+import { AvatarContext } from '../App';
+import players from '../playerData'
+
 export class RegisterMain extends React.Component {
   constructor(props){
     super(props)
@@ -17,7 +20,7 @@ export class RegisterMain extends React.Component {
       passwordErrorMessage: '',
       isFetching: false,
       fetchErrorMessage: '',
-      registering: true
+      registering: false
     }
   }
 
@@ -137,8 +140,8 @@ export class RegisterMain extends React.Component {
           })
       } else {
         return fetchLogin(this.state.usernameText, this.state.passwordText)
-          .then(webToken => {
-            return this.props.setLoggedIn(true, webToken)
+          .then(response => {
+            return this.props.setLoggedIn(true, response.webToken, response.userData.avatar)
           })
           .catch(errorMessage => {
             // errorMessage should be a string, but it might be an Error object
@@ -175,10 +178,17 @@ export class RegisterMain extends React.Component {
     return (
       <View style={this.registerMainStyles.container}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Image 
-            style={this.registerMainStyles.logo}
-            source={require('../../../src/components/landing-page/logo/owen-face-with-border.png')}
-          />
+          <AvatarContext.Consumer>
+            {
+              ({avatar}) => {
+                const character = players[avatar];
+                return <Image 
+                  style={this.registerMainStyles.logo}
+                  source={character.faceImageWithBorder}
+                />
+              }
+            }
+          </AvatarContext.Consumer>
         </View>
 
         <View style={{flex: 1.4}}>

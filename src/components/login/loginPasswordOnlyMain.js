@@ -6,6 +6,9 @@ import { LoginInput } from './loginInput';
 import { fetchLogin } from '../../fetchFunctions/login';
 import { checkPhoneId } from '../../fetchFunctions/checkPhoneId';
 
+import { AvatarContext } from '../App';
+import players from '../playerData';
+
 export class LoginPasswordOnlyMain extends React.Component {
   constructor(props){
     super(props)
@@ -60,6 +63,10 @@ export class LoginPasswordOnlyMain extends React.Component {
     return this.setState({isFetching: true}, () => {
       return checkPhoneId()
         .then(userObject => {
+          // If user no longer exists in database
+          if (userObject === false) {
+            return this.setState({isFetching: false}, () => this.props.setLoggedIn(false))
+          }
           this.setState({isFetching: false, username: userObject.username})
         })
     })
@@ -122,10 +129,17 @@ export class LoginPasswordOnlyMain extends React.Component {
     return (
       <View style={this.loginMainStyles.container}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Image 
-            style={this.loginMainStyles.logo}
-            source={require('../../../src/components/landing-page/logo/owen-face-with-border.png')}
-          />
+          <AvatarContext.Consumer>
+            {
+              ({avatar}) => {
+                const character = players[avatar];
+                return <Image 
+                  style={this.loginMainStyles.logo}
+                  source={character.faceImageWithBorder}
+                />
+              }
+            }
+          </AvatarContext.Consumer>
         </View>
 
         <View style={{flex: 1}}>

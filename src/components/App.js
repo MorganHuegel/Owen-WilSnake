@@ -11,6 +11,7 @@ import { fetchLoginJwt } from '../fetchFunctions/loginJwt';
 import { checkPhoneId } from '../fetchFunctions/checkPhoneId';
 
 
+export const AvatarContext = React.createContext()
 export default class App extends React.Component {
   state = {
     showRegistration: false,
@@ -18,7 +19,8 @@ export default class App extends React.Component {
     loggedIn: false,
     playing: false,
     fadingOutGameplay: false,
-    isFetching: false
+    isFetching: false,
+    avatar: 'charkie'
   }
 
 
@@ -50,23 +52,20 @@ export default class App extends React.Component {
           }
           return fetchLoginJwt(webToken)
         })
-        .then(isValid => {
-          if (isValid) {
-            this.setState({loggedIn: true, showPasswordLogin: false, isFetching: false})
-          } else {
-            this.setState({loggedIn: false, showPasswordLogin: true, isFetching: false})
-          }
+        .then(userData => {
+          this.setState({loggedIn: true, showPasswordLogin: false, isFetching: false, avatar: userData.avatar})
         })
         .catch((err) => {
           if (err === 'No JWT') {
             return checkPhoneId()
-              .then(userExists => {
-                if (userExists) {
+              .then(response => {
+                if (response.userExists) {
                   this.setState({
                     showRegistration: false,
                     showPasswordLogin: true,
                     loggedIn: false,
-                    isFetching: false
+                    isFetching: false,
+                    avatar: response.avatar
                   })
                 } else {
                   this.setState({
@@ -92,20 +91,22 @@ export default class App extends React.Component {
   }
 
 
-  setLoggedIn = (bool, webToken=null) => {
+  setLoggedIn = (bool, webToken=null, avatar=null) => {
     if (bool) {
       return AsyncStorage.setItem('@webToken', webToken)
         .then(this.setState({
           showRegistration: false,
           showPasswordLogin: false,
-          loggedIn: bool
+          loggedIn: bool,
+          avatar: avatar
         }))
     } else {
       return AsyncStorage.removeItem('@webToken')
         .then(this.setState({
           loggedIn: bool,
           playing: false,
-          showPasswordLogin: true
+          showPasswordLogin: true,
+          showRegistration: true
         }))
     }
   }
@@ -119,6 +120,11 @@ export default class App extends React.Component {
     })
   }
 
+
+  setAvatar = (avatar) => {
+    if (!avatar) avatar = 'charkie'
+    this.setState({ avatar })
+  }
   
   render() {
     let component;
@@ -130,7 +136,7 @@ export default class App extends React.Component {
         style={{marginTop: 100}}
       />
     } else if (!this.state.loggedIn && this.state.showRegistration) {
-      component = <RegisterMain setLoggedIn={this.setLoggedIn}/>
+      component = <RegisterMain setLoggedIn={this.setLoggedIn} setAvatar={this.setAvatar}/>
     } else if (!this.state.loggedIn && this.state.showPasswordLogin) {
       component = <LoginPasswordOnlyMain setLoggedIn={this.setLoggedIn}/>
     } else if (this.state.playing) {
@@ -143,12 +149,14 @@ export default class App extends React.Component {
       /> 
     } else {
       component = <LandingMain setToPlaying={this.setToPlaying} setLoggedIn={this.setLoggedIn}/>
-    } 
-
+    }
+    
     return (
-      <View style={stylesApp.container}>
-        {component}
-      </View>
+      <AvatarContext.Provider value={{avatar: this.state.avatar, setAvatar: this.setAvatar}}>
+        <View style={stylesApp.container}>
+          {component}
+        </View>
+      </AvatarContext.Provider>
     )
   }
 }
