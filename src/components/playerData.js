@@ -9,7 +9,8 @@ const players = {
     faceWidth: 270,
     faceHeight: 331,
     itemWidth: 577,
-    itemHeight: 493
+    itemHeight: 493,
+    itemScale: 93/100
   },
   charkie: {
     displayName: 'Charkie',
@@ -21,7 +22,8 @@ const players = {
     faceWidth: 534,
     faceHeight: 614,
     itemWidth: 363,
-    itemHeight: 298
+    itemHeight: 298,
+    itemScale: 93/100
   },
   betsy: {
     displayName: 'Betsy',
@@ -33,7 +35,8 @@ const players = {
     faceWidth: 221,
     faceHeight: 239,
     itemWidth: 798,
-    itemHeight: 625
+    itemHeight: 625,
+    itemScale: 83/100
   },
   dutch: {
     displayName: 'Dutch',
@@ -45,7 +48,8 @@ const players = {
     faceWidth: 370,
     faceHeight: 514,
     itemWidth: 785,
-    itemHeight: 255
+    itemHeight: 255,
+    itemScale: 80/100
   },
   gabe: {
     displayName: 'Gabe',
@@ -57,7 +61,8 @@ const players = {
     faceWidth: 389,
     faceHeight: 499,
     itemWidth: 805,
-    itemHeight: 1283
+    itemHeight: 1283,
+    itemScale: 1
   },
   neil: {
     displayName: 'Neil',
@@ -69,7 +74,8 @@ const players = {
     faceWidth: 516,
     faceHeight: 760,
     itemWidth: 280,
-    itemHeight: 694
+    itemHeight: 694,
+    itemScale: 67/100
   },
   owenWilson: {
     displayName: 'Owen',
@@ -81,7 +87,8 @@ const players = {
     faceWidth: 200,
     faceHeight: 233,
     itemWidth: 257,
-    itemHeight: 196
+    itemHeight: 196,
+    itemScale: 1
   }
 }
 

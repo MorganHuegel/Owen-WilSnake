@@ -8,8 +8,8 @@ import players from '../../../playerData';
 export function SingleOwenFace(props){
   owenFaceStyles = {
     singleFace: {
-      width: props.cellDimensions.width,
-      height: props.cellDimensions.height,
+      // width: props.cellDimensions.width,
+      // height: props.cellDimensions.height,
       position: 'absolute',
       left: props.face.left,
       top: props.face.top
@@ -21,7 +21,14 @@ export function SingleOwenFace(props){
       {
         ({avatar}) => {
           const character = players[avatar];
-          return <Animated.Image source={character.gameplayImage} style={owenFaceStyles.singleFace}/>
+          const faceSizeStyles = character.faceHeight > character.faceWidth ? {
+            width: props.cellDimensions.width,
+            height: props.cellDimensions.width * (character.faceHeight / character.faceWidth),
+          } : {
+            width: props.cellDimensions.height * (character.faceWidth / character.faceHeight),
+            height: props.cellDimensions.height,
+          }
+          return <Animated.Image source={character.gameplayImage} style={[owenFaceStyles.singleFace, faceSizeStyles]}/>
         }
       }
     </AvatarContext.Consumer>

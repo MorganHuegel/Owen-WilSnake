@@ -20,11 +20,11 @@ export function ChickenWing(props){
         ({avatar}) => {
           const character = players[avatar];
           const sizeStyles = character.itemWidth > character.itemHeight ? {
-            width: props.cellDimensions.width * (character.itemWidth / character.itemHeight),
-            height: props.cellDimensions.width
+            width: props.cellDimensions.width * (character.itemWidth / character.itemHeight) * character.itemScale,
+            height: props.cellDimensions.width * character.itemScale
           } : {
-            width: props.cellDimensions.width,
-            height: props.cellDimensions.width * (character.itemHeight / character.itemWidth)
+            width: props.cellDimensions.width * character.itemScale,
+            height: props.cellDimensions.width * (character.itemHeight / character.itemWidth) * character.itemScale
           }
           return <Image source={character.itemToEat} style={[chickenWingStyles.image, sizeStyles]}/> 
         }
