@@ -26,6 +26,12 @@ export function checkForDeath(){
 }
 
 export function checkForChicken(){
+  // let itemWidth, itemHeight;
+  // if (this.props.character.itemWidth > this.props.character.itemHeight) {
+  //   itemWidth = 
+  // } else {
+
+  // }
   if (
     (Math.abs(this.state.snakeBody[0].left.__getValue() - this.props.chickenWing.left) < this.props.cellDimensions.width)
     && (Math.abs(this.state.snakeBody[0].top.__getValue() - this.props.chickenWing.top) < this.props.cellDimensions.height)

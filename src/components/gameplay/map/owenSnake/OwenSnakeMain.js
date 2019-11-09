@@ -151,7 +151,7 @@ export class OwenSnakeMain extends React.Component {
     
     this.setNewDirection('right', snakeBodyIndex, () => {
       Animated.timing(this.state.snakeBody[snakeBodyIndex].left, {
-        toValue: this.props.mapDimensions.width - this.props.cellDimensions.width,
+        toValue: this.props.mapDimensions.width - this.props.cellDimensions.width, //Change here to account for varying face sizes
         easing: Easing.linear,
         duration: timeBeforeWall
       }).start()
@@ -199,7 +199,7 @@ export class OwenSnakeMain extends React.Component {
 
     this.setNewDirection('down', snakeBodyIndex, () => {
       Animated.timing(this.state.snakeBody[snakeBodyIndex].top, {
-        toValue: this.props.mapDimensions.height - this.props.cellDimensions.height,
+        toValue: this.props.mapDimensions.height - this.props.cellDimensions.height, //Change here to account for varying face sizes
         easing: Easing.linear,
         duration: timeBeforeWall
       }).start()      

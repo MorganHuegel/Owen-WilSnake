@@ -4,6 +4,8 @@ import { TouchableOpacity } from 'react-native';
 import { CellsMain } from './CellsMain'
 import { OwenSnakeMain } from './owenSnake/OwenSnakeMain';
 import { ChickenWing } from './ChickenWing';
+import { AvatarContext } from '../../App';
+import players from '../../playerData';
 
 export class MapMain extends React.Component {
   state = {
@@ -62,30 +64,40 @@ export class MapMain extends React.Component {
     const disabledScreenTouch = this.props.owenIsDead
 
     return (
-      <TouchableOpacity 
-        style={this.mapMainStyles.touchableOpacity} 
-        activeOpacity={0.8}
-        onPress={event => this.onPressMap(event)}
-        disabled={disabledScreenTouch}
-        >
-        <CellsMain 
-          mapDimensions={this.props.mapDimensions} 
-          cellDimensions={this.props.cellDimensions}
-        />
-        <ChickenWing cellDimensions={this.props.cellDimensions} chickenPosition={this.state.chickenWing}/>
-        <OwenSnakeMain 
-          setOwenToDead={this.props.setOwenToDead}
-          incrementPoints={this.props.incrementPoints}
-          mapDimensions={this.props.mapDimensions} 
-          cellDimensions={this.props.cellDimensions} 
-          lastPressed={this.state.lastPressed}
-          numOfTouches={this.props.score.numTouches}
-          playOwenSound={this.props.playOwenSound}
-          chickenWing={this.state.chickenWing}
-          setChickenWing={this.setChickenWing}
-          difficulty={this.props.difficulty}
-          owenIsDead={this.props.owenIsDead}/>
-      </TouchableOpacity>
+      <AvatarContext.Consumer>
+        {
+          ({avatar}) => {
+            const character = players[avatar]
+            return (
+            <TouchableOpacity 
+              style={this.mapMainStyles.touchableOpacity} 
+              activeOpacity={0.8}
+              onPress={event => this.onPressMap(event)}
+              disabled={disabledScreenTouch}>
+              <CellsMain 
+                mapDimensions={this.props.mapDimensions} 
+                cellDimensions={this.props.cellDimensions}/>
+              <ChickenWing 
+                cellDimensions={this.props.cellDimensions} 
+                chickenPosition={this.state.chickenWing}/>
+              <OwenSnakeMain 
+                setOwenToDead={this.props.setOwenToDead}
+                incrementPoints={this.props.incrementPoints}
+                mapDimensions={this.props.mapDimensions} 
+                cellDimensions={this.props.cellDimensions} 
+                lastPressed={this.state.lastPressed}
+                numOfTouches={this.props.score.numTouches}
+                playOwenSound={this.props.playOwenSound}
+                chickenWing={this.state.chickenWing}
+                setChickenWing={this.setChickenWing}
+                difficulty={this.props.difficulty}
+                owenIsDead={this.props.owenIsDead}
+                character={character}/>
+            </TouchableOpacity>
+            )
+          }
+        }
+        </AvatarContext.Consumer>
     )
   }
 }
