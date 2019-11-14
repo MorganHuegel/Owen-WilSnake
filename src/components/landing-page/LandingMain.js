@@ -41,7 +41,7 @@ export class LandingMain extends React.Component {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => this.toggleSelectAvatar()} style={this.landingMainStyles.buttons}>
-            <Text style={[this.landingMainStyles.buttonText, {marginTop: 10}]}>Change Avatar</Text>
+            <Text style={[this.landingMainStyles.buttonText, {marginTop: 10}]}>Change Character</Text>
           </TouchableOpacity>
 
           {this.state.selectingAvatar ? <SelectAvatar toggleSelectAvatar={this.toggleSelectAvatar}/> : null}

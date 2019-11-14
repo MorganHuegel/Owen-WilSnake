@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Picker, Button } from 'react-native';
+import { View, Picker, Button, TouchableOpacity, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { changeAvatar } from '../../fetchFunctions/changeAvatar';
@@ -9,9 +9,18 @@ import { AvatarContext } from '../App';
 export function SelectAvatar(props){
   const selectAvatarStyles = {
     container: {
+      flexDirection: 'column',
       position: 'relative',
       flex: 1,
+      alignContent: 'center',
       justifyContent: 'center'
+    },
+    selectButton: {
+      alignSelf: 'center'
+    },
+    selectButtonText: {
+      color: 'rgb(0, 0, 0)',
+      textDecoration: 'underline' // <------ update this when you have internet
     },
     picker: {
     },
@@ -30,10 +39,13 @@ export function SelectAvatar(props){
       { ({avatar, setAvatar}) => {
         return (
           <View style={selectAvatarStyles.container}>
-            <Button title='Back' color='rgb(82,152,193)' onPress={() => props.toggleSelectAvatar()}/>
+            <TouchableOpacity onPress={() => props.toggleSelectAvatar()} style={selectAvatarStyles.selectButton}>
+              <Text style={selectAvatarStyles.selectButtonText}>Select</Text>
+            </TouchableOpacity>
+
             <Picker 
               selectedValue={avatar}
-              style={selectAvatarStyles.container}
+              style={selectAvatarStyles.picker}
               onValueChange={newAvatar => {
                 return AsyncStorage.getItem('@webToken')
                   .then(webToken => changeAvatar(webToken, newAvatar))
