@@ -251,7 +251,6 @@ export class OwenSnakeMain extends React.Component {
         this.checkForDeath()
       }, 100)
     }, 1000)
-
   }
 
 
@@ -302,7 +301,13 @@ export class OwenSnakeMain extends React.Component {
 
   render(){
     const snake = this.state.snakeBody.map( (face, index) => {
-      return <SingleOwenFace face={face} cellDimensions={this.props.cellDimensions} key={'face' + index}/>
+      return <SingleOwenFace 
+        face={face} 
+        cellDimensions={this.props.cellDimensions} 
+        character={this.props.character}
+        key={'face' + index} 
+        characterDimensions={this.props.characterDimensions}
+      />
     })
 
     const collisionLogo = this.props.owenIsDead ? 

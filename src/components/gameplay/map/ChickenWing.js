@@ -2,9 +2,6 @@ import React from 'react';
 
 import { Image } from 'react-native';
 
-import { AvatarContext } from '../../App'
-import players from '../../playerData';
-
 export function ChickenWing(props){
   const chickenWingStyles = {
     image: {
@@ -14,21 +11,10 @@ export function ChickenWing(props){
     }
   }
 
-  return (
-    <AvatarContext.Consumer>
-      {
-        ({avatar}) => {
-          const character = players[avatar];
-          const sizeStyles = character.itemWidth > character.itemHeight ? {
-            width: props.cellDimensions.width * (character.itemWidth / character.itemHeight) * character.itemScale,
-            height: props.cellDimensions.width * character.itemScale
-          } : {
-            width: props.cellDimensions.width * character.itemScale,
-            height: props.cellDimensions.width * (character.itemHeight / character.itemWidth) * character.itemScale
-          }
-          return <Image source={character.itemToEat} style={[chickenWingStyles.image, sizeStyles]}/> 
-        }
-      }
-    </AvatarContext.Consumer>
-  )
+  const sizeStyles = {
+    width: props.itemDimensions.itemWidth,
+    height: props.itemDimensions.itemHeight
+  }
+
+  return <Image source={props.character.itemToEat} style={[chickenWingStyles.image, sizeStyles]}/> 
 }

@@ -60,6 +60,32 @@ export class MapMain extends React.Component {
   }
 
 
+  calculateItemDimensions = (character) => {
+    const itemWidth = character.itemWidth > character.itemHeight ?
+      this.props.cellDimensions.width * (character.itemWidth / character.itemHeight) * character.itemScale :
+      this.props.cellDimensions.width * character.itemScale
+
+    const itemHeight = character.itemWidth > character.itemHeight ?
+      this.props.cellDimensions.width * character.itemScale :
+      this.props.cellDimensions.width * (character.itemHeight / character.itemWidth) * character.itemScale
+
+    return { itemWidth, itemHeight }
+  }
+
+
+  calculateFaceDimensions = (character) => {
+    const characterWidth = character.faceHeight > character.faceWidth ? 
+      this.props.cellDimensions.width :
+      this.props.cellDimensions.height * (character.faceWidth / character.faceHeight)
+
+    const characterHeight = character.faceHeight > character.faceWidth ?
+      this.props.cellDimensions.width * (character.faceHeight / character.faceWidth) :
+      this.props.cellDimensions.height
+
+    return { characterWidth, characterHeight }
+  }
+
+
   render(){
     const disabledScreenTouch = this.props.owenIsDead
 
@@ -68,6 +94,9 @@ export class MapMain extends React.Component {
         {
           ({avatar}) => {
             const character = players[avatar]
+            const itemDimensions = this.calculateItemDimensions(character)
+            const characterDimensions = this.calculateFaceDimensions(character)
+
             return (
             <TouchableOpacity 
               style={this.mapMainStyles.touchableOpacity} 
@@ -79,7 +108,9 @@ export class MapMain extends React.Component {
                 cellDimensions={this.props.cellDimensions}/>
               <ChickenWing 
                 cellDimensions={this.props.cellDimensions} 
-                chickenPosition={this.state.chickenWing}/>
+                chickenPosition={this.state.chickenWing}
+                itemDimensions={itemDimensions}
+                character={character}/>
               <OwenSnakeMain 
                 setOwenToDead={this.props.setOwenToDead}
                 incrementPoints={this.props.incrementPoints}
@@ -92,7 +123,9 @@ export class MapMain extends React.Component {
                 setChickenWing={this.setChickenWing}
                 difficulty={this.props.difficulty}
                 owenIsDead={this.props.owenIsDead}
-                character={character}/>
+                character={character} 
+                itemDimensions={itemDimensions}
+                characterDimensions={characterDimensions}/>
             </TouchableOpacity>
             )
           }
