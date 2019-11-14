@@ -31,8 +31,8 @@ export class RegisterMain extends React.Component {
       alignItems: 'center'
     },
     logo: {
-      width: 168,
-      height: 196
+      width: undefined,
+      height: undefined
     },
     toggleRegistering: {
       marginTop: 15,
@@ -182,8 +182,12 @@ export class RegisterMain extends React.Component {
             {
               ({avatar}) => {
                 const character = players[avatar];
+                const registerPageLogoStyles = {
+                  width: 190 * (character.faceWidth / character.faceHeight),
+                  height: 190
+                }
                 return <Image 
-                  style={this.registerMainStyles.logo}
+                  style={[this.registerMainStyles.logo, registerPageLogoStyles]}
                   source={character.faceImageWithBorder}
                 />
               }
