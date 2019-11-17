@@ -151,7 +151,7 @@ export class OwenSnakeMain extends React.Component {
     
     this.setNewDirection('right', snakeBodyIndex, () => {
       Animated.timing(this.state.snakeBody[snakeBodyIndex].left, {
-        toValue: this.props.mapDimensions.width - this.props.cellDimensions.width,
+        toValue: this.props.mapDimensions.width - this.props.cellDimensions.width, //Change here to account for varying face sizes
         easing: Easing.linear,
         duration: timeBeforeWall
       }).start()
@@ -199,7 +199,7 @@ export class OwenSnakeMain extends React.Component {
 
     this.setNewDirection('down', snakeBodyIndex, () => {
       Animated.timing(this.state.snakeBody[snakeBodyIndex].top, {
-        toValue: this.props.mapDimensions.height - this.props.cellDimensions.height,
+        toValue: this.props.mapDimensions.height - this.props.cellDimensions.height, //Change here to account for varying face sizes
         easing: Easing.linear,
         duration: timeBeforeWall
       }).start()      
@@ -251,7 +251,6 @@ export class OwenSnakeMain extends React.Component {
         this.checkForDeath()
       }, 100)
     }, 1000)
-
   }
 
 
@@ -302,7 +301,13 @@ export class OwenSnakeMain extends React.Component {
 
   render(){
     const snake = this.state.snakeBody.map( (face, index) => {
-      return <SingleOwenFace face={face} cellDimensions={this.props.cellDimensions} key={'face' + index}/>
+      return <SingleOwenFace 
+        face={face} 
+        cellDimensions={this.props.cellDimensions} 
+        character={this.props.character}
+        key={'face' + index} 
+        characterDimensions={this.props.characterDimensions}
+      />
     })
 
     const collisionLogo = this.props.owenIsDead ? 

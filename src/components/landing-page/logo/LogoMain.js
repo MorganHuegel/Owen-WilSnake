@@ -28,16 +28,18 @@ export function LogoMain(props){
   }
 
   return (
-    <View style={logoMainStyles.container}>
-      <AvatarContext.Consumer>
-        {
-          ({avatar}) => {
-            const character = players[avatar];
-            return <Image source={character.landingText} style={logoMainStyles.logoWords}/>
-          }
+    <AvatarContext.Consumer>
+      {
+        ({avatar}) => {
+          const character = players[avatar];
+          return (    
+            <View style={logoMainStyles.container}>
+              <Image source={character.landingText} style={logoMainStyles.logoWords}/>
+              <LogoMainOwenFaceContainer character={character}/>
+            </View>
+          )
         }
-      </AvatarContext.Consumer>
-      <LogoMainOwenFaceContainer />
-    </View>
+      }
+    </AvatarContext.Consumer>
   )
 }

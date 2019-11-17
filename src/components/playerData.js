@@ -6,7 +6,11 @@ const players = {
     gameplayImage: require('../../images/daniel-kahle/daniel-face-with-border.png'),
     landingText: require('../../images/daniel-kahle/daniel-logo-words.png'),
     itemToEat: require('../../images/daniel-kahle/taco.png'),
-    widthToHeightRatioFace: 270 / 331
+    faceWidth: 269,
+    faceHeight: 318,
+    itemWidth: 577,
+    itemHeight: 493,
+    itemScale: 93/100
   },
   charkie: {
     displayName: 'Charkie',
@@ -15,7 +19,11 @@ const players = {
     gameplayImage: require('../../images/charkie/charkie-snake-with-border.png'),
     landingText: require('../../images/charkie/charkie-logo-words.png'),
     itemToEat: require('../../images/charkie/watermelon.png'),
-    widthToHeightRatioFace: null
+    faceWidth: 466,
+    faceHeight: 614,
+    itemWidth: 363,
+    itemHeight: 298,
+    itemScale: 93/100
   },
   betsy: {
     displayName: 'Betsy',
@@ -24,7 +32,11 @@ const players = {
     gameplayImage: require('../../images/betsy-jones/betsy-snake-with-border.png'),
     landingText: require('../../images/betsy-jones/betsy-logo-words.png'),
     itemToEat: require('../../images/betsy-jones/pizza.png'),
-    widthToHeightRatioFace: null
+    faceWidth: 218,
+    faceHeight: 196,
+    itemWidth: 798,
+    itemHeight: 625,
+    itemScale: 83/100
   },
   dutch: {
     displayName: 'Dutch',
@@ -33,7 +45,11 @@ const players = {
     gameplayImage: require('../../images/dutch/dutch-snake-with-border.png'),
     landingText: require('../../images/dutch/dutch-logo-words.png'),
     itemToEat: require('../../images/dutch/championship-belt.png'),
-    widthToHeightRatioFace: null
+    faceWidth: 365,
+    faceHeight: 507,
+    itemWidth: 785,
+    itemHeight: 255,
+    itemScale: 80/100
   },
   gabe: {
     displayName: 'Gabe',
@@ -42,7 +58,11 @@ const players = {
     gameplayImage: require('../../images/gabe-rees/gabe-snake-with-border.png'),
     landingText: require('../../images/gabe-rees/gabe-logo-words.png'),
     itemToEat: require('../../images/gabe-rees/beer-can.png'),
-    widthToHeightRatioFace: null
+    faceWidth: 382,
+    faceHeight: 490,
+    itemWidth: 805,
+    itemHeight: 1283,
+    itemScale: 1
   },
   neil: {
     displayName: 'Neil',
@@ -51,7 +71,11 @@ const players = {
     gameplayImage: require('../../images/neil/neil-snake-with-border.png'),
     landingText: require('../../images/neil/neil-logo-words.png'),
     itemToEat: require('../../images/neil/water.png'),
-    widthToHeightRatioFace: null
+    faceWidth: 505,
+    faceHeight: 758,
+    itemWidth: 280,
+    itemHeight: 694,
+    itemScale: 67/100
   },
   owenWilson: {
     displayName: 'Owen',
@@ -60,8 +84,12 @@ const players = {
     gameplayImage: require('../../images/owen-wilson/owen-face.png'),
     landingText: require('../../images/owen-wilson/owen-logo-words.png'),
     itemToEat: require('../../images/owen-wilson/chicken-wing.png'),
-    widthToHeightRatioFace: 200 / 233
-  },
+    faceWidth: 200,
+    faceHeight: 233,
+    itemWidth: 257,
+    itemHeight: 196,
+    itemScale: 1
+  }
 }
 
 module.exports = players

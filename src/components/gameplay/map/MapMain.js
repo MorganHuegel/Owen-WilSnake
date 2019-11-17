@@ -4,6 +4,8 @@ import { TouchableOpacity } from 'react-native';
 import { CellsMain } from './CellsMain'
 import { OwenSnakeMain } from './owenSnake/OwenSnakeMain';
 import { ChickenWing } from './ChickenWing';
+import { AvatarContext } from '../../App';
+import players from '../../playerData';
 
 export class MapMain extends React.Component {
   state = {
@@ -58,34 +60,77 @@ export class MapMain extends React.Component {
   }
 
 
+  calculateItemDimensions = (character) => {
+    const itemWidth = character.itemWidth > character.itemHeight ?
+      this.props.cellDimensions.width * (character.itemWidth / character.itemHeight) * character.itemScale :
+      this.props.cellDimensions.width * character.itemScale
+
+    const itemHeight = character.itemWidth > character.itemHeight ?
+      this.props.cellDimensions.width * character.itemScale :
+      this.props.cellDimensions.width * (character.itemHeight / character.itemWidth) * character.itemScale
+
+    return { itemWidth, itemHeight }
+  }
+
+
+  calculateFaceDimensions = (character) => {
+    const characterWidth = character.faceHeight > character.faceWidth ? 
+      this.props.cellDimensions.width :
+      this.props.cellDimensions.height * (character.faceWidth / character.faceHeight)
+
+    const characterHeight = character.faceHeight > character.faceWidth ?
+      this.props.cellDimensions.width * (character.faceHeight / character.faceWidth) :
+      this.props.cellDimensions.height
+
+    return { characterWidth, characterHeight }
+  }
+
+
   render(){
     const disabledScreenTouch = this.props.owenIsDead
 
     return (
-      <TouchableOpacity 
-        style={this.mapMainStyles.touchableOpacity} 
-        activeOpacity={0.8}
-        onPress={event => this.onPressMap(event)}
-        disabled={disabledScreenTouch}
-        >
-        <CellsMain 
-          mapDimensions={this.props.mapDimensions} 
-          cellDimensions={this.props.cellDimensions}
-        />
-        <ChickenWing cellDimensions={this.props.cellDimensions} chickenPosition={this.state.chickenWing}/>
-        <OwenSnakeMain 
-          setOwenToDead={this.props.setOwenToDead}
-          incrementPoints={this.props.incrementPoints}
-          mapDimensions={this.props.mapDimensions} 
-          cellDimensions={this.props.cellDimensions} 
-          lastPressed={this.state.lastPressed}
-          numOfTouches={this.props.score.numTouches}
-          playOwenSound={this.props.playOwenSound}
-          chickenWing={this.state.chickenWing}
-          setChickenWing={this.setChickenWing}
-          difficulty={this.props.difficulty}
-          owenIsDead={this.props.owenIsDead}/>
-      </TouchableOpacity>
+      <AvatarContext.Consumer>
+        {
+          ({avatar}) => {
+            const character = players[avatar]
+            const itemDimensions = this.calculateItemDimensions(character)
+            const characterDimensions = this.calculateFaceDimensions(character)
+
+            return (
+            <TouchableOpacity 
+              style={this.mapMainStyles.touchableOpacity} 
+              activeOpacity={0.8}
+              onPress={event => this.onPressMap(event)}
+              disabled={disabledScreenTouch}>
+              <CellsMain 
+                mapDimensions={this.props.mapDimensions} 
+                cellDimensions={this.props.cellDimensions}/>
+              <ChickenWing 
+                cellDimensions={this.props.cellDimensions} 
+                chickenPosition={this.state.chickenWing}
+                itemDimensions={itemDimensions}
+                character={character}/>
+              <OwenSnakeMain 
+                setOwenToDead={this.props.setOwenToDead}
+                incrementPoints={this.props.incrementPoints}
+                mapDimensions={this.props.mapDimensions} 
+                cellDimensions={this.props.cellDimensions} 
+                lastPressed={this.state.lastPressed}
+                numOfTouches={this.props.score.numTouches}
+                playOwenSound={this.props.playOwenSound}
+                chickenWing={this.state.chickenWing}
+                setChickenWing={this.setChickenWing}
+                difficulty={this.props.difficulty}
+                owenIsDead={this.props.owenIsDead}
+                character={character} 
+                itemDimensions={itemDimensions}
+                characterDimensions={characterDimensions}/>
+            </TouchableOpacity>
+            )
+          }
+        }
+        </AvatarContext.Consumer>
     )
   }
 }

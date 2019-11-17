@@ -1,7 +1,5 @@
 import React from 'react';
-import { View, Button } from 'react-native';
-
-import { changeAvatar } from '../../fetchFunctions/changeAvatar';
+import { View, TouchableOpacity, Text } from 'react-native';
 
 import { LogoMain } from './logo/LogoMain';
 import { StartButton } from './StartButton';
@@ -18,6 +16,12 @@ export class LandingMain extends React.Component {
     main: {
       display: 'flex',
       flex: 1
+    },
+    buttons: {
+      alignSelf: 'center'
+    },
+    buttonText: {
+      color: 'white'
     }
   }
 
@@ -31,8 +35,15 @@ export class LandingMain extends React.Component {
       (<View style={this.landingMainStyles.main}>
           <LogoMain />
           <StartButton setToPlaying={this.props.setToPlaying}/>
-          <Button title='Logout' onPress={() => this.props.setLoggedIn(false)} color='white'/>
-          <Button title='Change Avatar' onPress={() => this.toggleSelectAvatar()} color='white'/>
+
+          <TouchableOpacity onPress={() => this.props.setLoggedIn(false)} style={this.landingMainStyles.buttons}>
+            <Text style={this.landingMainStyles.buttonText}>Logout</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => this.toggleSelectAvatar()} style={this.landingMainStyles.buttons}>
+            <Text style={[this.landingMainStyles.buttonText, {marginTop: 10}]}>Change Character</Text>
+          </TouchableOpacity>
+
           {this.state.selectingAvatar ? <SelectAvatar toggleSelectAvatar={this.toggleSelectAvatar}/> : null}
         </View>
       )

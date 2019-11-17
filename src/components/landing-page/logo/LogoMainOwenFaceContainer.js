@@ -74,7 +74,7 @@ export class LogoMainOwenFaceContainer extends React.Component {
           position: 'absolute',
           height: Math.pow(1/2, i) * this.state.containerHeight,
           backgroundColor: 'rgba(255, 255, 255, 0)',
-          width: Math.pow(1/2, i) * this.state.containerHeight * (6/7),
+          width: Math.pow(1/2, i) * this.state.containerHeight * (this.props.character.faceWidth / this.props.character.faceHeight), //width-to-height ratio
           left: Math.pow(1/2, i+2) * this.state.containerWidth,
           zIndex: this.numberOfFaces - i,
           bottom: this.state.faceAnimations[i].bottom
